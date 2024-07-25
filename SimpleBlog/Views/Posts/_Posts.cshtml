@@ -1,0 +1,30 @@
+﻿@model SimpleBlog.Infrastructure.PagedData<SimpleBlog.Models.PostDTO>
+
+@foreach (var post in Model)
+{
+    @Html.Partial("_Post", post)
+}
+<ul class="list-unstyled">
+    @if (Model.HasPreviousPage)
+    {
+        <li class="pull-left">
+            <!-- null param tells mvc to go to current action we're on. just with new -->
+            <a href="@Url.Action(null, new{page=Model.PreviousPage})" class="btn btn-primary">
+                <i class="glyphicon glyphicon-chevron-left"></i>
+                Newer Posts
+            </a>
+        </li>
+    }
+
+    @if (Model.HasNextPage)
+    {
+        <li class="pull-right">
+            <a href="@Url.Action(null, new{page=Model.NextPage})" class="btn btn-primary">
+                <i class="glyphicon glyphicon-chevron-right"></i>
+                Older Posts
+            </a>
+        </li>
+    }
+
+</ul>
+

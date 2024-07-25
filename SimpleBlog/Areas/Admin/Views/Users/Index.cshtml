@@ -1,0 +1,67 @@
+﻿@model IEnumerable<SimpleBlog.Areas.Admin.ViewModels.UsersIndex>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Users</h1>
+
+<div class="btn-toolbar">
+    <a href="@Url.Action("new")" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-plus"></i>Create User</a>
+</div>
+<table class="table table-striped">
+    <tr>
+        <th>
+            Id
+        </th>
+        <th>
+            Username
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Roles
+        </th>
+        <th>
+            Actions
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rolename)
+                @*@string.Join(", ", item.Roles.Select(role => role.Name))*@
+            </td>
+            <td>
+                <div class="btn btn-group">
+                    <a href="@Url.Action("edit", new { id=item.Id })" class="btn btn-xs btn-primary">
+                        <i class="glyphicon glyphicon-edit"></i>
+                        Edit
+                    </a>
+                    <a href="@Url.Action("resetpassword", new { id=item.Id })" class="btn btn-xs btn-default">
+                        <i class="glyphicon glyphicon-lock"></i>
+                        Reset password
+                    </a>
+                    <a href="@Url.Action("delete", new { id=item.Id })" class="btn btn-xs btn-danger" data-post="Are you sure you want to delete @item.Username">
+                        <i class="glyphicon glyphicon-remove"></i>
+                        Delete
+                    </a>
+                </div>
+            </td>
+        </tr>
+    }
+
+</table>

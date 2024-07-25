@@ -1,0 +1,71 @@
+﻿@model SimpleBlog.Areas.Admin.ViewModels.UsersNew
+
+@{
+    ViewBag.Title = "New";
+}
+
+<h1>New user</h1>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Roles</div>
+            <div class="panel-body" id="myform">
+                <ul class="list-group">
+                    @for (var i = 0; i < Model.Roles.Count; i++)
+                    {
+                        <li class="list-group-item">
+                            @Html.Hidden("Roles[" + i + "].Id", Model.Roles[i].Id)
+                            <label for="Roles_@(i)__IsChecked">
+                                @Html.CheckBox("Roles[" + i + "].IsChecked", Model.Roles[i].IsChecked, new { @class = "test" })
+                                @Model.Roles[i].Name
+                                @Html.HiddenFor(model => model.Roles[i].Id)
+                                @Html.HiddenFor(model => model.Roles[i].Name)
+                            </label>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create User" class="btn btn-primary" id="DelButton" disabled />
+                <a href="@Url.Action("Index")">or cancel</a>
+            </div>
+        </div>
+    </div>
+
+}

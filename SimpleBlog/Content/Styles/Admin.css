@@ -1,0 +1,43 @@
+﻿.post-tag-editor .tag-select {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.post-tag-editor .tag-select li {
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px dashed #eee;
+}
+
+.post-tag-editor .tag-select li.template {
+    display: none;
+}
+
+.post-tag-editor .tag-select li a {
+    display: block;
+    padding: 2px 5px;
+    border-left: 20px solid #eee;
+}
+
+.post-tag-editor .tag-select li a:hover {
+    text-decoration: none;
+    background: #eee;
+}
+
+.post-tag-editor .tag-select li.selected a {
+    background: #d9edf7;
+    border-left-color: #3a87ad;
+}
+
+/*.post-tag-editor .tag-select li a.selected {
+    background: #d9edf7;
+    border-left-color: #3a87ad;
+    
+}*/
+
+/*.post-tag-editor li a:focus {
+    background: #d9edf7;
+    border-left-color: #3a87ad;
+}*/
+

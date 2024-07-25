@@ -1,0 +1,28 @@
+﻿@model SimpleBlog.Models.PostDTO
+
+
+
+    <article class="post">
+        <h1><a href="@Url.RouteUrl("Post", new { Model.Id, Model.Slug })">@Model.Title</a></h1>
+        <div>
+            @Html.Raw(Model.Content)
+        </div>
+        <footer>
+            <ul class="pull-right list-unstyled tags">
+                @foreach (var tag in Model.Tags)
+                {
+                    <li>
+                        <a class="badge" href="@Url.RouteUrl("Tag", new { tag.Id, tag.Slug })">@tag.Name</a>
+                    </li>
+                }
+            </ul>
+
+            @*Posted: @((int)(DateTime.UtcNow - Model.CreatedAt).TotalMinutes) minutes ago*@
+
+            @*@{var totMin = (int)(DateTime.UtcNow - Model.CreatedAt).TotalMinutes; }*@
+
+            Posted: <abbr class="timeago" title="@Model.CreatedAt.ToString("o")"></abbr>
+        </footer>
+    </article>
+                
+

@@ -1,0 +1,46 @@
+﻿@using System.Web.Optimization
+
+@{
+    Layout = null;
+}
+
+@helper SelectedTabClass(string tabName)
+{
+    if (tabName == ViewBag.SelectedTab)
+    {
+        @: active
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SimpleBlog Admin</title>
+
+    @Styles.Render("~/admin/styles")
+</head>
+<body>
+    <div class="container">
+        <ul class="nav nav-pills">
+            <li class="@SelectedTabClass("posts")">
+                @Html.ActionLink("Posts", "Index", "Posts", new { area = "admin" }, new { })
+            </li>
+            <li class="@SelectedTabClass("users")">
+                @Html.ActionLink("Users", "Index", "Users", new { area = "admin" }, new { })
+            </li>
+            <li class="pull-right">
+                @Html.RouteLink("Back to Website", "Home")
+            </li>
+        </ul>
+        @RenderBody()
+    </div>
+
+
+
+    @Scripts.Render("~/admin/scripts")
+    @RenderSection("Scripts", false)
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</body>
+</html>
